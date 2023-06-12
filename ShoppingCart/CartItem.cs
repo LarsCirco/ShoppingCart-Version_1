@@ -9,8 +9,8 @@ namespace ShoppingCart
 {
     internal class CartItem
     {
-        public Product product { get; }
-        public int Ammount { get; set; }
+        private Product product { get; }
+        public int Ammount { get; private set; }
 
         public CartItem(Product product, int amount)
         {
@@ -23,6 +23,10 @@ namespace ShoppingCart
           Ammount += amount;
         }
 
+        public bool CheckingDuplicate(Product _product)
+        {
+            return product.ProductName == _product.ProductName;
+        }
 
         public int GetTotalPrice()
         {

@@ -13,7 +13,7 @@ namespace ShoppingCart
 
         public void Buy(Product product, int quantity)
         {
-            var DoesItExist = Items.FirstOrDefault(item => item.product.ProductName == product.ProductName);
+            var DoesItExist = Items.FirstOrDefault(item => item.CheckingDuplicate(product));
 
             if (DoesItExist == null)
             {
