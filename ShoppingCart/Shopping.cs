@@ -13,7 +13,7 @@ namespace ShoppingCart
 
         public void Buy(Product product, int quantity)
         {
-            var DoesItExist = Items.FirstOrDefault(item => item.ShowProduct().HenteNavn() == product.HenteNavn());
+            var DoesItExist = Items.FirstOrDefault(item => item.product.ProductName == product.ProductName);
 
             if (DoesItExist == null)
             {
@@ -24,7 +24,7 @@ namespace ShoppingCart
                 DoesItExist.Add(quantity);
             }
 
-            Console.WriteLine($"Du kjøpte {quantity} stk. {product.HenteNavn()}");
+            Console.WriteLine($"Du kjøpte {quantity} stk. {product.ProductName}");
         }
         public void ShowCart()
         {
@@ -39,15 +39,10 @@ namespace ShoppingCart
 
             foreach (var item in Items)
             {
-                var count = item.GetCount();
-                var productName = item.ShowProduct().HenteNavn();
-                var itemPrice = item.ShowProduct().HentePris();
-                var price = item.GetTotalPrice();
 
-                Console.WriteLine($"  {count} stk. {productName} a kr {itemPrice} = {price}");
-                totalPrice += price;
+                totalPrice += item.GetTotalPrice();
+                Console.WriteLine(" " + item.PrintOutAllInfo());
             }
-
             Console.WriteLine($"Totalpris: {totalPrice}");
         }
 

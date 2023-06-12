@@ -9,33 +9,29 @@ namespace ShoppingCart
 {
     internal class CartItem
     {
-        private Product product;
-        private int Antall;
+        public Product product { get; }
+        public int Ammount { get; set; }
 
-        public CartItem(Product product, int antall)
+        public CartItem(Product product, int amount)
         {
             this.product = product;
-            Antall = antall;
+            Ammount = amount;
         }
 
-        public void Add(int antall)
+        public void Add(int amount)
         {
-          Antall += antall;
+          Ammount += amount;
         }
 
-        public Product ShowProduct()
-        {
-            return product;
-        }
-
-        public int GetCount()
-        {
-            return Antall;
-        }
 
         public int GetTotalPrice()
         {
-            return product.HentePris() * Antall;
+            return product.ProductPrice * Ammount;
+        }
+
+        public string PrintOutAllInfo()
+        {
+            return $"Antall! {Ammount} Prodrukt Navn: {product.ProductName} produkt pris {product.ProductPrice}";
         }
     }
 }
